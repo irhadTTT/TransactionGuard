@@ -14,3 +14,4 @@ class PredictionResponse(BaseModel):
     risk_score: float
     risk_level: str
     decision: str
+    risk_factors: list[str]

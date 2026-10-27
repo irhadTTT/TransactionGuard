@@ -8,7 +8,7 @@ app = FastAPI(title="TransactionGuard API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173", "http://localhost:5174"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -42,6 +42,23 @@ def predict(transaction: Transaction):
 
     probability = model.predict_proba(data_scaled)[0][1]
 
+    risk_factors = []
+
+    if transaction.amount >= 1000:
+        risk_factors.append("High transaction amount")
+
+    if transaction.distance_from_home >= 50:
+        risk_factors.append("Unusual distance from home")
+
+    if transaction.failed_attempts >= 2:
+        risk_factors.append("Multiple failed attempts")
+
+    if transaction.country_changed == 1:
+        risk_factors.append("Transaction from a different country")
+
+    if transaction.is_night == 1:
+        risk_factors.append("Transaction during nighttime")
+
     risk_score = probability * 100
 
     if probability < 0.30:
@@ -60,7 +77,8 @@ def predict(transaction: Transaction):
         "fraud_probability": probability,
         "risk_score": risk_score,
         "risk_level": risk_level,
-        "decision": decision
+        "decision": decision,
+        "risk_factors": risk_factors
     }
 
 @app.get("/health")

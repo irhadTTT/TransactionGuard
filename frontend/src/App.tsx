@@ -112,18 +112,16 @@ function App() {
             </div>
 
             <div
-              className={`ml-auto flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium ${
-                apiOnline
+              className={`ml-auto flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium ${apiOnline
                   ? "bg-green-100 text-green-700"
                   : "bg-red-100 text-red-700"
-              }`}
+                }`}
             >
               <span
-                className={`h-2 w-2 rounded-full ${
-                  apiOnline
+                className={`h-2 w-2 rounded-full ${apiOnline
                     ? "animate-pulse bg-green-500"
                     : "bg-red-500"
-                }`}
+                  }`}
               />
 
               {apiOnline ? "API Online" : "API Offline"}
@@ -152,7 +150,7 @@ function App() {
               {/* Amount */}
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-300">
-                  Amount
+                  Amount (€)
                 </label>
 
                 <input
@@ -360,6 +358,30 @@ function App() {
                     {result.decision}
                   </p>
 
+                </div>
+                {/* Risk Factors */}
+                <div className="border-t border-slate-800 pt-5">
+                  <h3 className="text-lg font-semibold">
+                    Why is this transaction suspicious?
+                  </h3>
+
+                  {result.risk_factors.length > 0 ? (
+                    <ul className="mt-4 space-y-3">
+                      {result.risk_factors.map((factor, index) => (
+                        <li
+                          key={index}
+                          className="flex items-start gap-3 rounded-lg border border-red-500/20 bg-red-500/5 p-3"
+                        >
+                          <span className="mt-0.5 text-red-400">⚠</span>
+                          <span className="text-sm text-slate-300">{factor}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="mt-3 text-sm text-green-400">
+                      No specific risk factors detected.
+                    </p>
+                  )}
                 </div>
 
               </div>

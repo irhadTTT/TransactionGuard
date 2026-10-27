@@ -13,6 +13,7 @@ export interface PredictionResponse {
   risk_score: number;
   risk_level: string;
   decision: string;
+  risk_factors: string[];
 }
 
 export async function predictTransaction(
