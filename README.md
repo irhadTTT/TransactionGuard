@@ -2,7 +2,8 @@
 
 AI-powered fraud detection system that analyzes financial transactions and estimates their fraud risk using Machine Learning.
 
-<img width="1917" height="1021" alt="Screenshot 2026-08-30 223016" src="https://github.com/user-attachments/assets/c6d8f69a-3f43-41e9-a369-6f030a8af9f1" />
+<img width="1916" height="1025" alt="Screenshot 2026-10-27 192045" src="https://github.com/user-attachments/assets/5e44fdc4-5610-451e-8b5d-84921a55d785" />
+
 
 ## Features
 
